@@ -1,0 +1,128 @@
+:root {
+  --hh-bg-light: #f5f7fb;
+  --hh-bg-dark: #050816;
+  --hh-surface-light: #ffffff;
+  --hh-surface-dark: #020617;
+  --hh-primary: #16a34a;
+  --hh-primary-soft: #bbf7d0;
+  --hh-accent: #22c55e;
+  --hh-border-subtle: rgba(148, 163, 184, 0.4);
+  --hh-radius-xl: 1.5rem;
+  --hh-radius-2xl: 2rem;
+  --hh-shadow-soft: 0 24px 80px rgba(15, 23, 42, 0.25);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark-50 text-dark-900;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-hover {
+    @apply hover:bg-white/10 transition-all duration-300;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #0f172a 0, #020617 50%, #020617 100%);
+  color: #e5e7eb;
+}
+
+.glass-panel {
+  border-radius: var(--hh-radius-2xl);
+  background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.15), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.06), transparent 55%),
+    rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: var(--hh-shadow-soft);
+  backdrop-filter: blur(22px) saturate(140%);
+}
+
+.hh-orbit {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(22, 163, 74, 0.16), transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(34, 197, 94, 0.08), transparent 55%),
+    radial-gradient(circle at 50% 110%, rgba(8, 47, 73, 0.5), transparent 60%);
+  z-index: -1;
+}
+
+.hh-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.7) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.7) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle at center, black 0, transparent 70%);
+  z-index: -2;
+}
+
+.hh-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  background: linear-gradient(120deg,
+      rgba(16, 185, 129, 0.28),
+      rgba(22, 163, 74, 0.12),
+      rgba(6, 78, 59, 0.6));
+  color: #bbf7d0;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hh-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+}
+
+.hh-heading {
+  background: linear-gradient(120deg, #f9fafb, #bbf7d0, #4ade80);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hh-subtle {
+  color: #9ca3af;
+}
+
+.dark body {
+  background: radial-gradient(circle at top, #020617 0, #000 55%, #000 100%);
+}

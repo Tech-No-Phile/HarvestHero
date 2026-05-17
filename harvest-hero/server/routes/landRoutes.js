@@ -1,0 +1,12 @@
+import express from 'express';
+import { createLand, getLands, getMyLands, requestLease, approveLease, rejectLease, deleteLand } from '../controllers/landController.js';
+import { protect, authorize } from '../middleware/auth.js';
+const router = express.Router();
+router.get('/', getLands);
+router.post('/', protect, authorize('landowner'), createLand);
+router.get('/my', protect, authorize('landowner'), getMyLands);
+router.put('/:id/request', protect, authorize('farmer'), requestLease);
+router.post('/:id/approve', protect, authorize('landowner'), approveLease);
+router.post('/:id/reject', protect, authorize('landowner'), rejectLease);
+router.delete('/:id', protect, authorize('landowner'), deleteLand);
+export default router;

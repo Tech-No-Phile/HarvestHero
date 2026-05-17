@@ -1,0 +1,11 @@
+import express from 'express';
+import { createHarvest, getHarvests, getAllHarvests, purchaseHarvest, deleteHarvest } from '../controllers/harvestController.js';
+import { protect, authorize } from '../middleware/auth.js';
+const router = express.Router();
+router.get('/', getHarvests);
+router.post('/', protect, authorize('farmer'), createHarvest);
+router.get('/my', protect, getAllHarvests);
+router.post('/:id/purchase', protect, authorize('vendor'), purchaseHarvest);
+router.delete('/:id', protect, authorize('farmer'), deleteHarvest);
+router.put('/:id/purchase', protect, authorize('vendor'), purchaseHarvest);
+export default router;
