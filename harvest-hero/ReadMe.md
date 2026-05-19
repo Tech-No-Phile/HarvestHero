@@ -1,194 +1,241 @@
-# 🌾 HarvestHero
+<div align="center">
 
-> **A blockchain-powered agricultural marketplace connecting farmers, vendors, and landowners — bringing transparency and trust to crop trading.**
-<img src="" />
+![HarvestHero Banner](./assets/banner.png)
 
----
+# HarvestHero
 
-## 🚀 The Problem
+**An agricultural marketplace built on trust — where every trade is verified on-chain.**
 
-Agriculture is plagued by middlemen, opaque pricing, and zero transaction accountability. Farmers get underpaid, vendors overpay, and there's no reliable record of who bought what, when, and for how much.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white)](https://mongodb.com)
+[![Hardhat](https://img.shields.io/badge/Hardhat-Ethereum-F7DF1E?logo=ethereum&logoColor=black)](https://hardhat.org)
 
-**HarvestHero fixes this.**
 
----
+</div>
 
-## 💡 What It Does
-
-HarvestHero is a full-stack marketplace platform with three distinct user roles:
-
-| Role | What They Can Do |
-|------|-----------------|
-| 🧑‍🌾 **Farmer** | List harvests with crop name, quantity, and price |
-| 🏪 **Vendor** | Browse the marketplace and purchase available harvests |
-| 🏡 **Landowner** | Manage and lease land listings |
-
-Every transaction is **recorded on the blockchain**, creating an immutable, verifiable audit trail — no disputes, no fraud, no he-said-she-said.
 
 ---
 
-## ✨ Key Features
+## Why HarvestHero?
 
-- 🔐 **Role-based authentication** — Farmers, vendors, and landowners each get a tailored dashboard
-- 🌾 **Harvest listings** — Create, manage, and track crop listings with real-time status
-- 🛒 **Marketplace** — Vendors can browse and purchase available harvests instantly
-- ⛓️ **Blockchain verification** — Every purchase is recorded on-chain via a smart contract
-- 📊 **Live dashboards** — Stats on revenue, purchases, and available inventory per role
-- 🏡 **Land management** — Landowners can list and manage land parcels
+Agriculture has a trust problem. Farmers sell without knowing who's buying. Vendors buy without knowing what they're getting. Deals happen on handshakes with no paper trail. When disputes come up, there's nothing to fall back on.
 
----
+HarvestHero started from a simple question: what if every crop transaction had an immutable, public record that neither party could tamper with?
 
-## 🛠️ Tech Stack
-
-### Frontend
-- **React** + **React Router v6** — SPA with role-based routing
-- **Tailwind CSS** — Utility-first styling with a custom dark theme
-- **Framer Motion** — Smooth animations and transitions
-
-### Backend
-- **Node.js** + **Express** — REST API server
-- **MongoDB** + **Mongoose** — Database and ODM
-- **JWT** — Secure authentication
-
-### Blockchain
-- **Hardhat** — Local Ethereum development environment
-- **Ethers.js (v5)** — Smart contract interaction
-- **Solidity** — Smart contract for recording harvest transfers on-chain
+The result is a role-based marketplace where farmers list harvests, vendors buy them, landowners manage their land — and every purchase is permanently recorded on the Ethereum blockchain.
 
 ---
 
-## 📁 Project Structure
+## What's Inside
 
-```
-HarvestHero/
-├── client/                  # React frontend
-│   ├── src/
-│   │   ├── pages/           # Landing, Login, Register, Dashboards
-│   │   ├── context/         # AuthContext
-│   │   ├── components/      # ProtectedRoute, shared UI
-│   │   └── utils/           # Axios API instance
-├── server/                  # Express backend
-│   ├── routes/              # Auth, Harvest, Land, Blockchain routes
-│   ├── config/              # MongoDB + Blockchain config
-│   └── scripts/             # Hardhat deploy scripts
-└── README.md
-```
+HarvestHero has three moving parts:
+
+**A React frontend** with separate dashboards per role, a live marketplace, and real-time stats. Built with Tailwind CSS and Framer Motion for a clean, responsive experience.
+
+**An Express backend** that handles authentication, harvest/land CRUD, and purchase logic. MongoDB stores all user and harvest data. JWT secures every protected route.
+
+**A Solidity smart contract** deployed on a local Hardhat node. Every time a vendor purchases a harvest, the backend calls `recordTransfer()` on-chain — storing the harvest ID, farmer address, vendor address, and price permanently.
 
 ---
 
-## ⚡ Getting Started
+## Roles & Dashboards
+
+<!--  (1200x600px) -->
+<!-- ![Dashboard Screenshots](./assets/dashboards.png) -->
+
+| Role | Access | Core Actions |
+|------|--------|-------------|
+| 🧑‍🌾 Farmer | `/farmer` | Create harvests, track sales, view revenue |
+| 🏪 Vendor | `/vendor` | Browse marketplace, purchase harvests, view spend |
+| 🏡 Landowner | `/landowner` | List land, manage parcels |
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18, React Router v6, Tailwind CSS, Framer Motion |
+| Backend | Node.js, Express, MongoDB, Mongoose |
+| Auth | JWT (JSON Web Tokens) |
+| Blockchain | Solidity, Hardhat, Ethers.js v5 |
+| Dev Tools | Vite, dotenv, cors |
+
+---
+
+## Getting Started
 
 ### Prerequisites
-- Node.js v18+
-- MongoDB (local or Atlas)
-- MetaMask or any Ethereum wallet (optional, for blockchain features)
 
-### 1. Clone the repo
+- Node.js v18 or higher
+- MongoDB — local instance or [MongoDB Atlas](https://mongodb.com/atlas)
+- Git
+
+### 1. Clone the repository
+
 ```bash
 git clone https://github.com/yourusername/harvest-hero.git
 cd harvest-hero
 ```
 
-### 2. Set up the server
+### 2. Configure the server
+
 ```bash
 cd server
 npm install
 ```
 
-Create a `.env` file in `/server`:
+Create a `.env` file inside `/server`:
+
 ```env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 NODE_ENV=development
+CONTRACT_ADDRESS=         # Fill after deploying the smart contract
 ```
 
-### 3. Set up the blockchain (optional)
-```bash
-# Terminal 1 — Start local Hardhat node
-npx hardhat node
+### 3. Set up the blockchain
 
-# Terminal 2 — Deploy the smart contract
+Open two terminals:
+
+```bash
+# Terminal 1 — spin up a local Hardhat node
+npx hardhat node
+```
+
+```bash
+# Terminal 2 — deploy the smart contract
 npx hardhat run scripts/deploy.js --network localhost
 ```
 
-Add the deployed contract address to your `.env`:
-```env
-CONTRACT_ADDRESS=your_deployed_contract_address
-```
+Copy the contract address printed in Terminal 2 and paste it into `CONTRACT_ADDRESS` in your `.env`.
 
 ### 4. Start the server
+
 ```bash
 npm run dev
 ```
 
-### 5. Set up the client
+### 5. Set up and run the client
+
 ```bash
 cd ../client
 npm install
 npm run dev
 ```
 
-Visit `http://localhost:5173` 🎉
+Open [http://localhost:5173](http://localhost:5173) and register as a farmer, vendor, or landowner.
 
 ---
 
-## 🔗 API Endpoints
+## Project Structure
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register a new user |
-| POST | `/api/auth/login` | Login and get JWT |
-| GET | `/api/auth/me` | Get current user |
-| GET | `/api/harvests` | Get all harvests |
-| GET | `/api/harvests/my` | Get farmer's own harvests |
-| POST | `/api/harvests` | Create a new harvest |
-| PUT | `/api/harvests/:id/purchase` | Purchase a harvest |
-| DELETE | `/api/harvests/:id` | Delete a harvest |
-| GET | `/api/lands` | Get all land listings |
-| GET | `/api/blockchain` | Blockchain status |
-
----
-
-## 🧠 How Blockchain Works Here
-
-When a vendor purchases a harvest:
-
-1. The backend calls the smart contract's `recordTransfer()` function
-2. It records the harvest ID, farmer address, vendor address, and price on-chain
-3. The transaction hash is saved to MongoDB alongside the harvest record
-4. The frontend displays the `⛓️ Blockchain Verified` badge on the listing
-
-This ensures **every trade is tamper-proof and publicly auditable**.
+```
+harvest-hero/
+├── client/
+│   └── src/
+│       ├── pages/          # Landing, Login, Register, role dashboards
+│       ├── context/        # AuthContext (user session)
+│       ├── components/     # ProtectedRoute and shared components
+│       └── utils/          # Axios instance (api.js)
+├── server/
+│   ├── routes/             # authRoutes, harvestRoutes, landRoutes, blockchainRoutes
+│   ├── config/             # MongoDB connection, blockchain init
+│   └── scripts/            # Hardhat deploy script
+├── assets/                 # Screenshots and images for this README
+├── CONTRIBUTING.md
+└── README.md
+```
 
 ---
 
-## 🎯 Why HarvestHero?
+## API Reference
 
-- **For farmers** — Fair, direct pricing with no middlemen
-- **For vendors** — Transparent sourcing with verified provenance
-- **For landowners** — Streamlined land management in one platform
-- **For everyone** — Blockchain accountability that builds trust across the supply chain
+<details>
+<summary>Auth</summary>
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/auth/register` | — | Register a new user with a role |
+| POST | `/api/auth/login` | — | Login and receive a JWT |
+| GET | `/api/auth/me` | ✅ | Get the current authenticated user |
+
+</details>
+
+<details>
+<summary>Harvests</summary>
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/harvests` | ✅ | List all harvests |
+| GET | `/api/harvests/my` | ✅ Farmer | Get the logged-in farmer's harvests |
+| POST | `/api/harvests` | ✅ Farmer | Create a new harvest listing |
+| PUT | `/api/harvests/:id/purchase` | ✅ Vendor | Purchase a harvest |
+| DELETE | `/api/harvests/:id` | ✅ Farmer | Delete an available harvest |
+
+</details>
+
+<details>
+<summary>Land & Blockchain</summary>
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/lands` | ✅ | List all land parcels |
+| POST | `/api/lands` | ✅ Landowner | Create a land listing |
+| GET | `/api/blockchain` | ✅ | Check blockchain connection status |
+
+</details>
 
 ---
 
-## 🛣️ Roadmap
+## How the Blockchain Integration Works
 
+<!-- ![Blockchain Flow](./assets/blockchain-flow.png) -->
+
+When a vendor clicks **Purchase Now**:
+
+1. The Express backend validates the request and updates the harvest status in MongoDB
+2. It then calls `recordTransfer()` on the deployed Solidity contract, passing the harvest ID, farmer wallet address, vendor wallet address, and price
+3. The transaction hash returned from the contract is saved alongside the harvest record in MongoDB
+4. The frontend displays a `⛓️ Blockchain Verified` badge on any harvest with a valid transaction hash
+
+If the blockchain call fails (e.g. the local node is down), the purchase still completes in MongoDB — the hash is stored as `blockchain_error` and no badge is shown.
+
+---
+
+## Roadmap
+
+- [ ] Bidding and price negotiation between farmers and vendors
+- [ ] SMS/email notifications on purchase
 - [ ] Mobile app (React Native)
-- [ ] Price negotiation / bidding system
-- [ ] Weather and yield analytics integration
-- [ ] Multi-language support (Hindi, Marathi, Tamil)
-- [ ] Government subsidy integration
-- [ ] QR code-based harvest verification
+- [ ] Hindi, Marathi, and Tamil language support
+- [ ] Weather and yield analytics per crop
+- [ ] Government subsidy scheme integration
+- [ ] QR code scanning for in-field harvest verification
+- [ ] Testnet deployment (Sepolia / Mumbai)
 
 ---
 
-## 👥 Team
+## Contributing
 
-Built with ❤️ for farmers everywhere.
+Contributions are what make open source worth building. Whether it's fixing a bug, suggesting a feature, or improving the docs — all of it matters.
+
+Read the full guidelines in [CONTRIBUTING.md](CONTRIBUTING.md) before getting started.
 
 ---
+<!--
+## License
 
-## 📄 License
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
-MIT License — see [LICENSE](LICENSE) for details.
+---
+-->
+
+<div align="center">
+
+Built for the Awesome farmers. Powered by code.
+
+</div>
