@@ -42,7 +42,7 @@ If you're unsure where to start, open an issue and ask. We'll help you find some
 
 ## Getting the Project Running Locally
 
-Follow the setup steps in [README.md](README.md). Once you have it running:
+Follow the setup steps in [README.md](https://github.com/Tech-No-Phile/HarvestHero/blob/main/harvest-hero/ReadMe.md). Once you have it running:
 
 1. Make sure both the client (`localhost:5173`) and server (`localhost:5000`) are running
 2. For blockchain features, ensure the Hardhat node is also up (`npx hardhat node`)
@@ -175,7 +175,7 @@ Open an issue with the label `enhancement`. Describe:
 - Any alternatives you considered
 - Who this would help (farmers, vendors, landowners, or all three)
 
-Features that align with the [Roadmap](README.md#roadmap) are more likely to be picked up quickly, but nothing is off the table.
+Features that align with the [Roadmap](https://github.com/Tech-No-Phile/HarvestHero/blob/main/harvest-hero/ReadMe.md) are more likely to be picked up quickly, but nothing is off the table.
 
 ---
 
