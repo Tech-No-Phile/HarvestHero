@@ -1,10 +1,9 @@
 <div align="center">
 
-![HarvestHero Banner](./assets/banner.png)
-
+![HarvestHero Banner](https://github.com/Tech-No-Phile/HarvestHero/blob/main/harvest-hero/assets/HomeUIPage.png)
 # HarvestHero
 
-**An agricultural marketplace built on trust — where every trade is verified on-chain.**
+**An agricultural marketplace built on trust, where every trade is verified on-chain.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org)
@@ -24,7 +23,7 @@ Agriculture has a trust problem. Farmers sell without knowing who's buying. Vend
 
 HarvestHero started from a simple question: what if every crop transaction had an immutable, public record that neither party could tamper with?
 
-The result is a role-based marketplace where farmers list harvests, vendors buy them, landowners manage their land — and every purchase is permanently recorded on the Ethereum blockchain.
+The result is a role-based marketplace where farmers list harvests, vendors buy them, landowners manage their land, and every purchase is permanently recorded on the Ethereum blockchain.
 
 ---
 
@@ -36,7 +35,7 @@ HarvestHero has three moving parts:
 
 **An Express backend** that handles authentication, harvest/land CRUD, and purchase logic. MongoDB stores all user and harvest data. JWT secures every protected route.
 
-**A Solidity smart contract** deployed on a local Hardhat node. Every time a vendor purchases a harvest, the backend calls `recordTransfer()` on-chain — storing the harvest ID, farmer address, vendor address, and price permanently.
+**A Solidity smart contract** deployed on a local Hardhat node. Every time a vendor purchases a harvest, the backend calls `recordTransfer()` on-chain --> storing the harvest ID, farmer address, vendor address, and price permanently.
 
 ---
 
@@ -70,7 +69,7 @@ HarvestHero has three moving parts:
 ### Prerequisites
 
 - Node.js v18 or higher
-- MongoDB — local instance or [MongoDB Atlas](https://mongodb.com/atlas)
+- MongoDB - local instance or [MongoDB Atlas](https://mongodb.com/atlas)
 - Git
 
 ### 1. Clone the repository
@@ -102,12 +101,12 @@ CONTRACT_ADDRESS=         # Fill after deploying the smart contract
 Open two terminals:
 
 ```bash
-# Terminal 1 — spin up a local Hardhat node
+# Terminal 1 - spin up a local Hardhat node
 npx hardhat node
 ```
 
 ```bash
-# Terminal 2 — deploy the smart contract
+# Terminal 2 - deploy the smart contract
 npx hardhat run scripts/deploy.js --network localhost
 ```
 
@@ -159,8 +158,8 @@ harvest-hero/
 
 | Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| POST | `/api/auth/register` | — | Register a new user with a role |
-| POST | `/api/auth/login` | — | Login and receive a JWT |
+| POST | `/api/auth/register` | - | Register a new user with a role |
+| POST | `/api/auth/login` | - | Login and receive a JWT |
 | GET | `/api/auth/me` | ✅ | Get the current authenticated user |
 
 </details>
@@ -202,7 +201,7 @@ When a vendor clicks **Purchase Now**:
 3. The transaction hash returned from the contract is saved alongside the harvest record in MongoDB
 4. The frontend displays a `⛓️ Blockchain Verified` badge on any harvest with a valid transaction hash
 
-If the blockchain call fails (e.g. the local node is down), the purchase still completes in MongoDB — the hash is stored as `blockchain_error` and no badge is shown.
+If the blockchain call fails (e.g. the local node is down), the purchase still completes in MongoDB --> the hash is stored as `blockchain_error` and no badge is shown.
 
 ---
 
@@ -221,9 +220,9 @@ If the blockchain call fails (e.g. the local node is down), the purchase still c
 
 ## Contributing
 
-Contributions are what make open source worth building. Whether it's fixing a bug, suggesting a feature, or improving the docs — all of it matters.
+Contributions are what make open source worth building. Whether it's fixing a bug, suggesting a feature, or improving the docs, all of it matters.
 
-Read the full guidelines in [CONTRIBUTING.md](CONTRIBUTING.md) before getting started.
+Read the full guidelines in [CONTRIBUTING.md](https://github.com/Tech-No-Phile/HarvestHero/blob/main/harvest-hero/contributing.md) before getting started.
 
 ---
 <!--
@@ -236,6 +235,6 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-Built for the Awesome farmers. Powered by code.
+Built with :heart: for the Awesome farmers. Powered by code.
 
 </div>
